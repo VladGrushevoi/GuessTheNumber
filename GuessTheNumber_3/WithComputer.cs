@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 
@@ -43,7 +42,7 @@ namespace GuessTheNumber_3
             with.Controls.Add(Lcomp);
         }
 
-        public override void ChekInputNumber()
+        public override void ChekInputNumber(int g,string name)
         {
             int chek = magic.Check();
             if (chek == 1)
@@ -58,36 +57,50 @@ namespace GuessTheNumber_3
                     "Вгадай число", MessageBoxButtons.OK);
                 ListBox[2].Text = "";
             }
-            else
+            else if(chek == 0)
             {
+                    if (g < magic.Guess)
+                    {
+                    if (name == "Гравець") {
+                        magic.CountTry++;
+                        ListLabel[5].Text = "ЗРОБЛЕНО СПРОБ: " + (magic.CountTry).ToString();
+                        ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
+                        LogicComputer();
+                    }
+                    else
+                    {
+                        Lcomp.Text = "КОМП'ЮТЕР СПРОБУВАВ ЧИСЛО " + g + ", ВОНО ВИЯВИЛОСЯ МЕШНИМ";
+                    }
+                    }
+                    else if (g > magic.Guess)
+                    {
+                        if(name == "Гравець")
+                         {
+                            magic.CountTry++;
+                            ListLabel[5].Text = "ЗРОБЛЕНО СПРОБ: " + (magic.CountTry).ToString();
+                            ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
+                            LogicComputer();
+                        }
+                        else
+                        {
+                             Lcomp.Text = "КОМП'ЮТЕР СПРОБУВАВ ЧИСЛО " + g + ", ВОНО ВИЯВИЛОСЯ БІЛЬШИМ";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("          Вітаєм!   \n" +
+                                                                    name + " виграв за " + magic.CountTry.ToString() + " спроб, це число "+ g
+                                                                        , "Вгадай число",
+                                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ListBut[1].Text = "РЕСТАРТ";
+                        ListBut[1].Enabled = true;
+                        ListBox[2].Enabled = false;
+                        tempFrom = 0;
+                        tempTo = 0;
+                        magic.CountTry = 0;
+                    }
                 
-                ListLabel[4].Text = " ";
-                ListLabel[5].Text = "ЗРОБЛЕНО СПРОБ: " + (magic.CountTry).ToString();
-                if (magic.InputNumber < magic.Guess)
-                {
-                    ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
-                    magic.CountTry++;
-                    LogicComputer();
-
-                }
-                else if (magic.InputNumber > magic.Guess)
-                {
-                    ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
-                    magic.CountTry++;
-                    LogicComputer();
-                }
-                else
-                {
-                    MessageBox.Show("          Вітаєм!   \n" +
-                                                 "Ви вгадали число за " + magic.CountTry.ToString() + " спроб"
-                                                 , "Вгадай число",
-                                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ListBut[1].Text = "РЕСТАРТ";
-                    ListBut[1].Enabled = true;
-                    ListBox[2].Enabled = false;
-
-                    magic.CountTry = 0;
-                }
+               
             }
         }
 
@@ -97,58 +110,38 @@ namespace GuessTheNumber_3
             MainMenu.CompOnMenu();
         }
 
+        private int tempFrom = 0;
+        private int tempTo = 0;
         private void LogicComputer()
         {
             Random rnd = new Random();
             int inum = 0;
-            int tempFrom;
-            int tempTo;
-            if (magic.InputNumber < magic.Guess)
+            if (magic.InputNumber <= magic.Guess)
             {
                 tempFrom = magic.InputNumber;
-                inum = rnd.Next(tempFrom, magic.To);
             }
-            else if (magic.InputNumber > magic.Guess)
+            else if (magic.InputNumber >= magic.Guess && magic.InputNumber <= magic.To)
             {
                 tempTo = magic.InputNumber;
-                inum = rnd.Next(magic.From, tempTo);
             }
-            CheckInum(inum);
+            if (tempFrom == 0)
+            {
+                tempFrom = magic.From;
+            }
+            if (tempTo == 0)
+            {
+                tempTo = magic.To;
+            }
+            inum = rnd.Next(tempFrom, tempTo);
+            ChekInputNumber(inum, "Комп'ютер");
         }
-
-        public void CheckInum(int inum)
-        {
-            int chek = magic.Check();
-            if (inum == magic.Guess)
-            {
-                MessageBox.Show("          Ви програли!   \n" +
-                                                 "Комп'ютер вгадав число за " + magic.CountTry.ToString() + " спроб " + inum
-                                                 , "Вгадай число",
-                                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ListLabel[3].Text = "";
-                ListBox[2].Enabled = false;
-
-                magic.CountTry = 0;
-            }
-            else if (inum < magic.Guess)
-            {
-                Lcomp.Text = "КОМП'ЮТЕР СПРОБУВАВ ЧИСЛО " + inum + " ВОНО ВИЯВИЛОСЯ МЕНШИМ";
-            }
-            else if (inum > magic.Guess)
-            {
-                Lcomp.Text = "КОМП'ЮТЕР СПРОБУВАВ ЧИСЛО " + inum + " ВОНО ВИЯВИЛОСЯ БІЛЬШИМ";
-
-                ListBut[1].Enabled = true;
-            }
-        }
-
         public void butTry_Click(object sender, EventArgs e)
         {
-            ListBut[3].Enabled = false;
             try
             {
                 magic.InputNumber = Convert.ToInt32(ListBox[2].Text);
-                ChekInputNumber();
+                ChekInputNumber(magic.InputNumber, "Гравець");
+                ListBut[3].Enabled = false;
             }
             catch
             {
@@ -164,7 +157,10 @@ namespace GuessTheNumber_3
             ListLabel[3].Text = "";
             ListLabel[4].Text = "";
             ListLabel[5].Text = "";
-            Lcomp.Text = "";
+            ListBut[1].Text = "ПОЧАТОК";
+            Lcomp.Text = "HELLO, CHUVIRLO";
+            magic.From = 0;
+            magic.To = 0;
         }
     }
 }

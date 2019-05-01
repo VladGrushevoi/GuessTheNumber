@@ -29,7 +29,7 @@ namespace GuessTheNumber_3
             try
             {
                 magic.InputNumber = Convert.ToInt32(ListBox[2].Text);
-                ChekInputNumber();
+                ChekInputNumber(magic.InputNumber,"Ви вгадали число за " + magic.CountTry.ToString() + " спроб");
             }
             catch
             {
@@ -37,52 +37,49 @@ namespace GuessTheNumber_3
             }
         }
 
-        public override void ChekInputNumber()
-        {
+        //public override void ChekInputNumber()
+        //{
 
-            int chek = magic.Check();
-            if (chek == 1)
-            {
-                MessageBox.Show("Ви ввели більше число чим найбільше число проміжка. Введіть друге",
-                    "Вгадай число", MessageBoxButtons.OK);
-                ListBox[2].Text = "";
-            }
-            else if (chek == -1)
-            {
-                MessageBox.Show("Ви ввели менше число чим найменше число проміжка. Введіть друге",
-                    "Вгадай число", MessageBoxButtons.OK);
-                ListBox[2].Text = "";
-            }
-            else
-            {
+        //    int chek = magic.Check();
+        //    if (chek == 1)
+        //    {
+        //        MessageBox.Show("Ви ввели більше число чим найбільше число проміжка. Введіть друге",
+        //            "Вгадай число", MessageBoxButtons.OK);
+        //        ListBox[2].Text = "";
+        //    }
+        //    else if (chek == -1)
+        //    {
+        //        MessageBox.Show("Ви ввели менше число чим найменше число проміжка. Введіть друге",
+        //            "Вгадай число", MessageBoxButtons.OK);
+        //        ListBox[2].Text = "";
+        //    }
+        //    else
+        //    {
+        //        magic.CountTry++;
+        //        ListLabel[4].Text = " ";
+        //        ListLabel[5].Text = "ЗРОБЛЕНО СПРОБ: " + (magic.CountTry).ToString();
+        //        if (magic.InputNumber < magic.Guess)
+        //        {
+        //            ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
+        //        }
+        //        else if (magic.InputNumber > magic.Guess)
+        //        {
+        //            ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("          Вітаєм!   \n" +
+        //                                         "Ви вгадали число за " + magic.CountTry.ToString() + " спроб"
+        //                                         , "Вгадай число",
+        //                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //            ListBut[1].Text = "РЕСТАРТ";
+        //            ListBut[1].Enabled = true;
+        //            ListBox[2].Enabled = false;
+        //            magic.CountTry = 0;
+        //        }
+        //    }
 
-                //magic.CountTry++;
-                ListLabel[4].Text = " ";
-                ListLabel[5].Text = "ЗРОБЛЕНО СПРОБ: " + (magic.CountTry).ToString();
-                if (magic.InputNumber < magic.Guess)
-                {
-                    ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
-                    magic.CountTry++;
-                }
-                else if (magic.InputNumber > magic.Guess)
-                {
-                    ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
-                    magic.CountTry++;
-                }
-                else
-                {
-                    MessageBox.Show("          Вітаєм!   \n" +
-                                                 "Ви вгадали число за " + magic.CountTry.ToString() + " спроб"
-                                                 , "Вгадай число",
-                                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ListBut[1].Text = "РЕСТАРТ";
-                    ListBut[1].Enabled = true;
-                    ListBox[2].Enabled = false;
-                    magic.CountTry = 0;
-                }
-            }
-
-        }
+        //}
 
         public override void Clear()
         {
@@ -92,7 +89,10 @@ namespace GuessTheNumber_3
             ListLabel[3].Text = "";
             ListLabel[4].Text = "";
             ListLabel[5].Text = "";
+            ListBut[1].Text = "ПОЧАТОК";
             magic.CountTry = 0;
+            magic.From = 0;
+            magic.To = 0;
         }
 
         private void Exit_Click(object sender, EventArgs e)

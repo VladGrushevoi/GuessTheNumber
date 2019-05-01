@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GuessTheNumber_3
 {
@@ -12,7 +8,7 @@ namespace GuessTheNumber_3
         private  int gnumber = 0;
         private  int from = 0;
         private  int to = 0;
-        private  int countTry = 1;
+        private  int countTry = 0;
         //private int Number { get; set; }
         private int inputNumber = 0;
 

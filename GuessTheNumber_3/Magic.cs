@@ -58,7 +58,7 @@ namespace GuessTheNumber_3
         public Panel Initialization(Panel p)
         {
             //Panel
-            p.Size = new Size(700, 600);
+            p.Size = new Size(1000, 600);
 
             ////поле для вводу від
             ListBox[0].Location = new Point(50, 50);
@@ -91,8 +91,6 @@ namespace GuessTheNumber_3
             //Events buttons
             ListBut[0].Click += butEnter_Click;
             ListBut[1].Click += butPlayRestart_Click;
-            //ListBut[2].Click += butExit_Click;
-           // ListBut[3].Click += butTry_Click;
 
             //Заголок лейбл
             ListLabel[0].Location = new Point(10, 10);
@@ -158,13 +156,12 @@ namespace GuessTheNumber_3
             }
         }
 
-        //public abstract void butTry_Click(object sender, EventArgs e);
 
         private void butPlayRestart_Click(object sender, EventArgs e)
         {
             if (ListBut[1].Text == "ПОЧАТОК")
             {
-           
+                magic.CountTry = 0;
                 #region//Деякі дії над компонентами після натиску кнопки Початок
                     ListBut[1].Text = "РЕСТАРТ";
                     ListLabel[3].Visible = true;
@@ -187,8 +184,6 @@ namespace GuessTheNumber_3
                     ListBox[0].Enabled = true;
                     ListBut[1].Text = "ПОЧАТОК";
                     ListBut[1].Enabled = false;
-                    ListBox[2].Visible = false;
-                    ListBut[3].Visible = false;
                     ListBox[1].Text = "";
                     ListBox[0].Text = "";
                     ListBox[2].Text = "";
@@ -225,8 +220,49 @@ namespace GuessTheNumber_3
             ListBut[0].Enabled = false;
             ListBut[1].Enabled = false;
         }
+        public virtual void ChekInputNumber(int g, string info)
+        {
+            int chek = magic.Check();
+            if (chek == 1)
+            {
+                MessageBox.Show("Ви ввели більше число чим найбільше число проміжка. Введіть друге",
+                    "Вгадай число", MessageBoxButtons.OK);
+                ListBox[2].Text = "";
+            }
+            else if (chek == -1)
+            {
+                MessageBox.Show("Ви ввели менше число чим найменше число проміжка. Введіть друге",
+                    "Вгадай число", MessageBoxButtons.OK);
+                ListBox[2].Text = "";
+            }
+            else
+            {
+                magic.CountTry++;
+                ListLabel[4].Text = " ";
+                ListLabel[5].Text = "ЗРОБЛЕНО СПРОБ: " + (magic.CountTry).ToString();
+                if (magic.InputNumber < magic.Guess)
+                {
+                    ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
+                }
+                else if (magic.InputNumber > magic.Guess)
+                {
+                    ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
+                }
+                else
+                {
+                    MessageBox.Show("          Вітаєм!   \n" +
+                                                 "Ви вгадали число за " + magic.CountTry.ToString() + " спроб"
+                                                 , "Вгадай число",
+                                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ListBut[1].Text = "РЕСТАРТ";
+                    ListBut[1].Enabled = true;
+                    ListBox[2].Enabled = false;
+                    magic.CountTry = 0;
+                }
+            }
 
-        public abstract void ChekInputNumber();
+        }
+    
 
         public abstract void Clear();
     }

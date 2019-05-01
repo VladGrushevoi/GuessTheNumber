@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GuessTheNumber_3
@@ -16,7 +13,7 @@ namespace GuessTheNumber_3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainMenu(new Menu(), new SinglePlayer(),new WithComputer(), new PVP(), new Rules()));
+            Application.Run(new MainMenu());
         }
     }
 }

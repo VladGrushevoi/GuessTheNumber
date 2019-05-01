@@ -57,7 +57,8 @@ namespace GuessTheNumber_3
             MoreLessP2.Font = new Font("Mistral", 16F);
             MoreLessP2.Location = new Point(820, 240);
             MoreLessP2.Name = "labelMoreLess_p2";
-            MoreLessP2.Size = new Size(0, 41);
+            MoreLessP2.Size = new Size(0, 100);
+            MoreLessP2.MaximumSize = new Size(500, 50);
             pvp.Controls.Add(MoreLessP2);
 
             //TextBox for 2 player
@@ -67,6 +68,7 @@ namespace GuessTheNumber_3
             p2.MaxLength = 9;
             p2.Size = new Size(100, 25);
             p2.Location = new Point(580, 240);
+            p2.UseSystemPasswordChar = true;
             pvp.Controls.Add(p2);
             p2.KeyPress += tBoxMyNumber_p2_KeyPress;
             pvp.Controls.Add(p2);
@@ -80,13 +82,14 @@ namespace GuessTheNumber_3
             pvp.Controls.Add(pi);
 
             //Some other
-            pvp.Size = new Size(1000, 600);
+            pvp.Size = new Size(1100, 600);
             ListBut[2].Click += Exit_Click;
             ListBut[3].Click += butTry_Click;
             ListLabel[5].Location = new Point(170, 170);
             ListLabel[5].Visible = true;
             ListLabel[5].Text = "ПЕРШИЙ ГРАВЕЦЬ";
             ListLabel[3].Location = new Point(600, 10);
+            ListBox[2].UseSystemPasswordChar = true;
 
         }
 
@@ -109,7 +112,7 @@ namespace GuessTheNumber_3
             try
             {
                 magic.InputNumber = Convert.ToInt32(p2.Text);
-                ChekInputNumber_for_p2();
+                ChekInputNumber(magic.InputNumber, "Другий");
             }
             catch
             {
@@ -129,7 +132,7 @@ namespace GuessTheNumber_3
             try
             {
                 magic.InputNumber = Convert.ToInt32(ListBox[2].Text);
-                ChekInputNumber();
+                ChekInputNumber(magic.InputNumber,"Перший");
             }
             catch
             {
@@ -137,15 +140,15 @@ namespace GuessTheNumber_3
             }
         }
 
-        public override void ChekInputNumber() // Check number for first player
+        public override void ChekInputNumber(int g, string name) 
         {
-            if (magic.InputNumber > magic.To)
+            if (g > magic.To)
             {
                 MessageBox.Show("Ви ввели більше число чим найбільше число проміжка. Введіть друге",
                     "Вгадай число", MessageBoxButtons.OK);
                 ListBox[2].Text = "";
             }
-            else if (magic.InputNumber < magic.From)
+            else if (g < magic.From)
             {
                 MessageBox.Show("Ви ввели менше число чим найменше число проміжка. Введіть друге",
                     "Вгадай число", MessageBoxButtons.OK);
@@ -153,62 +156,39 @@ namespace GuessTheNumber_3
             }
             else
             {
-                if (magic.InputNumber < magic.Guess)
+                if (g < magic.Guess)
                 {
-                    ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
-                    DisEnabled_p1();
-                    Enabled_p2();
+                    if (name == "Перший")
+                    {
+                        ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
+                        DisEnabled_p1();
+                        Enabled_p2();
+                    }
+                    else
+                    {
+                        MoreLessP2.Text = "ВАШЕ ЧИСЛО МЕНШЕ";
+                        Enabled_p1();
+                        DisEnabled_p2();
+                    }
                 }
-                else if (magic.InputNumber > magic.Guess)
+                else if (g > magic.Guess)
                 {
-                    ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
-                    DisEnabled_p1();
-                    Enabled_p2();
-                }
-                else
-                {
-                    MessageBox.Show("          Вітаєм!   \n" + "Виграв перший гравець, це число " + magic.InputNumber
-                                                 , "Вгадай число",
-                                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    ListBut[1].Text = "РЕСТАРТ";
-                    ListBut[1].Enabled = true;
-                    DisEnabled_p1();
-                    DisEnabled_p2();
-                }
-            }
-        }
-        private void ChekInputNumber_for_p2()
-        {
-            if (magic.InputNumber > magic.To)
-            {
-                MessageBox.Show("Ви ввели більше число чим найбільше число проміжка. Введіть друге",
-                    "Вгадай число", MessageBoxButtons.OK);
-                ListBox[2].Text = "";
-            }
-            else if (magic.InputNumber < magic.From)
-            {
-                MessageBox.Show("Ви ввели менше число чим найменше число проміжка. Введіть друге",
-                    "Вгадай число", MessageBoxButtons.OK);
-                ListBox[2].Text = "";
-            }
-            else
-            {
-                if (magic.InputNumber < magic.Guess)
-                {
-                    MoreLessP2.Text = "ВАШЕ ЧИСЛО МЕНШЕ";
-                    Enabled_p1();
-                    DisEnabled_p2();
-                }
-                else if (magic.InputNumber > magic.Guess)
-                {
-                    MoreLessP2.Text = "ВВАШЕ ЧИСЛО БІЛЬШЕ";
-                    Enabled_p1();
-                    DisEnabled_p2();
+                    if (name == "Перший")
+                    {
+                        ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
+                        DisEnabled_p1();
+                        Enabled_p2();
+                    }
+                    else
+                    {
+                        MoreLessP2.Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
+                        Enabled_p1();
+                        DisEnabled_p2();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("          Вітаєм!   \n" + "Виграв другий гравець це число " + magic.InputNumber
+                    MessageBox.Show("          Вітаєм!   \n" + "Виграв "+ name + " гравець, це число " + magic.InputNumber
                                                  , "Вгадай число",
                                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -229,6 +209,9 @@ namespace GuessTheNumber_3
             ListLabel[4].Text = "";
             ListLabel[5].Text = "";
             MoreLessP2.Text = "";
+            ListBut[1].Text = "ПОЧАТОК";
+            magic.From = 0;
+            magic.To = 0;
             p2.Clear();
         }
 

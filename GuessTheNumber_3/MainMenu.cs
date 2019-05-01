@@ -6,23 +6,17 @@ namespace GuessTheNumber_3
 {
     public partial class MainMenu : Form
     {
-        public MainMenu(Menu m, SinglePlayer s, WithComputer w, PVP p, Rules r)
+        public MainMenu()
         {
             InitializeComponent();
-            menu = m;
-            single = s;
-            with = w;
-            pvp = p;
-            rule = r;
-            this.Controls.Add(menu.Panel);
-            this.Controls.Add(single.Panel);
-            this.Controls.Add(with.Panel);
-            this.Controls.Add(pvp.Panel);
-            this.Controls.Add(rule.Panel);
+            single = new SinglePlayer();
+            with = new WithComputer();
+            pvp = new PVP();
+            rule = new Rules();
             menu.Panel.BringToFront();
         }
 
-        static Menu menu;
+        static Menu menu = new Menu();
         static SinglePlayer single;
         static WithComputer with;
         static PVP pvp;
@@ -30,7 +24,11 @@ namespace GuessTheNumber_3
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-
+            this.Controls.Add(menu.Panel);
+            this.Controls.Add(single.Panel);
+            this.Controls.Add(with.Panel);
+            this.Controls.Add(pvp.Panel);
+            this.Controls.Add(rule.Panel);
         }
 
         public static void MenuOnSingl()
@@ -53,6 +51,7 @@ namespace GuessTheNumber_3
 
         public static void CompOnMenu()
         {
+
             menu.Panel.BringToFront();
             with.Panel.SendToBack();
         }

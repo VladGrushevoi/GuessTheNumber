@@ -31,14 +31,14 @@ namespace GuessTheNumber_3
 
         private void SetButtons(params string[] text)
         {
-            Point p = new Point(175, 50);
+            Point p = new Point(170, 50);
             foreach (string t in text)
             {
                 button = new Button();
                 button.Text = t;
                 button.Location = p;
                 p = new Point(p.X, p.Y + 60);
-                button.Size = new Size(200, 45);
+                button.Size = new Size(175, 60);
                 button.FlatStyle = FlatStyle.Flat;
                 button.FlatAppearance.BorderColor = Color.RoyalBlue;
                 button.FlatAppearance.BorderSize = 0;
@@ -61,7 +61,6 @@ namespace GuessTheNumber_3
 
         private void Initilization()
         {
-            //panel nenu
             menu = new Panel();
             menu.AutoSize = true;
             menu.BackColor = Color.DodgerBlue;
