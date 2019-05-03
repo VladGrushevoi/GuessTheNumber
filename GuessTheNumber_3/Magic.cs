@@ -94,7 +94,7 @@ namespace GuessTheNumber_3
 
             //Заголок лейбл
             ListLabel[0].Location = new Point(10, 10);
-            ListLabel[0].Text = "ЗАДАЙТИ ПРОМІЖОК В ЯКОМУ ХОЧЕТЕ ВГАДУВАТИ ЧИСЛО";
+            ListLabel[0].Text = "ЗАДАЙТЕ ПРОМІЖОК В ЯКОМУ ХОЧЕТЕ ВГАДУВАТИ ЧИСЛО";
 
             //Лейбл від
             ListLabel[1].Location = new Point(10, 50);
@@ -202,7 +202,7 @@ namespace GuessTheNumber_3
             {
                 magic.From = Convert.ToInt32(ListBox[0].Text);
                 magic.To = Convert.ToInt32(ListBox[1].Text);
-                magic.Guess = magic.SetGuess;
+                magic.Guess = magic.SetGuess();
 
                 ListBut[1].Enabled = true;
                 ListBut[0].Enabled = false;

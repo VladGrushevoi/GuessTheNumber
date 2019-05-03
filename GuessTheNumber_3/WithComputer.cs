@@ -7,8 +7,10 @@ namespace GuessTheNumber_3
     public class WithComputer : Magic
     {
         Panel with = new Panel();
-
         Label Lcomp = new Label();
+
+        private int tempFrom = 0;
+        private int tempTo = 0;
         public WithComputer()
         {
             FillPanels(with, "ВСТАНОВИТЬ", "ПОЧАТОК", "ВИХІД", "ВГАДАТЬ");
@@ -88,17 +90,21 @@ namespace GuessTheNumber_3
                     }
                     else
                     {
+                    
                         MessageBox.Show("          Вітаєм!   \n" +
-                                                                    name + " виграв за " + magic.CountTry.ToString() + " спроб, це число "+ g
-                                                                        , "Вгадай число",
-                                                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                                        name + " виграв за " + magic.CountTry.ToString() + " спроб, це число " + g
+                                                                            , "Вгадай число",
+                                                       MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                         ListBut[1].Text = "РЕСТАРТ";
                         ListBut[1].Enabled = true;
                         ListBox[2].Enabled = false;
                         tempFrom = 0;
                         tempTo = 0;
                         magic.CountTry = 0;
-                    }
+
+                    Lcomp.Text = "КОМП'ЮТЕР СПРОБУВАВ ЧИСЛО " + g + ", ВОНО ВИЯВИЛОСЯ ПРАВИЛЬНИМ";
+                }
                 
                
             }
@@ -110,20 +116,11 @@ namespace GuessTheNumber_3
             MainMenu.CompOnMenu();
         }
 
-        private int tempFrom = 0;
-        private int tempTo = 0;
+        
         private void LogicComputer()
         {
             Random rnd = new Random();
             int inum = 0;
-            if (magic.InputNumber <= magic.Guess)
-            {
-                tempFrom = magic.InputNumber;
-            }
-            else if (magic.InputNumber >= magic.Guess && magic.InputNumber <= magic.To)
-            {
-                tempTo = magic.InputNumber;
-            }
             if (tempFrom == 0)
             {
                 tempFrom = magic.From;
@@ -131,6 +128,14 @@ namespace GuessTheNumber_3
             if (tempTo == 0)
             {
                 tempTo = magic.To;
+            }
+            if (magic.InputNumber <= magic.Guess && magic.InputNumber >= tempFrom)
+            {
+                tempFrom = magic.InputNumber;
+            }
+            else if (magic.InputNumber >= magic.Guess && magic.InputNumber <= tempTo)
+            {
+                tempTo = magic.InputNumber;
             }
             inum = rnd.Next(tempFrom, tempTo);
             ChekInputNumber(inum, "Комп'ютер");
@@ -158,7 +163,7 @@ namespace GuessTheNumber_3
             ListLabel[4].Text = "";
             ListLabel[5].Text = "";
             ListBut[1].Text = "ПОЧАТОК";
-            Lcomp.Text = "HELLO, CHUVIRLO";
+            Lcomp.Text = "HELLO";
             magic.From = 0;
             magic.To = 0;
         }

@@ -9,7 +9,7 @@ namespace GuessTheNumber_3
     {
         List<Button> ListBut = new List<Button>();
         private static Button button;
-
+        private PictureBox tile = new PictureBox();
         private Panel menu;
 
 
@@ -31,7 +31,7 @@ namespace GuessTheNumber_3
 
         private void SetButtons(params string[] text)
         {
-            Point p = new Point(170, 50);
+            Point p = new Point(170, 100);
             foreach (string t in text)
             {
                 button = new Button();
@@ -61,6 +61,7 @@ namespace GuessTheNumber_3
 
         private void Initilization()
         {
+            //Panel
             menu = new Panel();
             menu.AutoSize = true;
             menu.BackColor = Color.DodgerBlue;
@@ -73,6 +74,13 @@ namespace GuessTheNumber_3
             menu.Text = "Гра Вгадай число";
             menu.ResumeLayout(false);
             menu.PerformLayout();
+
+            //Picture Box
+            tile.Location = new Point(50, 0);
+            tile.Image = Image.FromFile("E:\\CourseWork 2 sem\\GuessTheNumber_3\\GuessTheNumber_3\\1.bmp");
+            tile.Size = new Size(400, 100);
+            tile.SizeMode = PictureBoxSizeMode.AutoSize;
+            menu.Controls.Add(tile);
         }
 
         private void Menu_Paint(object sender, EventArgs e)

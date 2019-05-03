@@ -4,25 +4,22 @@ namespace GuessTheNumber_3
 {
     public class MagicNumber
     {
-        Random rand = new Random();
         private  int gnumber = 0;
         private  int from = 0;
         private  int to = 0;
         private  int countTry = 0;
-        //private int Number { get; set; }
         private int inputNumber = 0;
+
+        Random rand = new Random();
 
         public MagicNumber()
         {
 
         }
 
-        public int SetGuess
+        public int  SetGuess()
         {
-            get
-            {
-                return rand.Next(from, to);
-            }
+            return rand.Next(from, to);
         }
 
         public int Guess
