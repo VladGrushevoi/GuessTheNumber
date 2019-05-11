@@ -44,6 +44,44 @@ namespace GuessTheNumber_3
             with.Controls.Add(Lcomp);
         }
 
+        public override void butPlayRestart_Click(object sender, EventArgs e)
+        {
+            if (ListBut[1].Text == "ПОЧАТОК")
+            {
+                magic.CountTry = 0;
+                #region//Деякі дії над компонентами після натиску кнопки Початок
+                ListBut[1].Text = "РЕСТАРТ";
+                ListLabel[3].Visible = true;
+                ListLabel[3].Text = "ЧИСЛО В МЕЖАХ ВІД: " + magic.From.ToString() + " ДО " + magic.To.ToString() + "! ";
+                ListBox[2].Visible = true;
+                ListBox[2].Enabled = true;
+                ListBut[3].Visible = true;
+                ListLabel[4].Visible = true;
+                ListLabel[5].Visible = true;
+                #endregion
+
+
+            }
+            else
+            {
+                magic.CountTry = 0;
+                #region //Деякі дії над компонентами після натиску кнопки рестарт
+                ListBox[1].Enabled = true;
+                ListBox[0].Enabled = true;
+                ListBut[1].Text = "ПОЧАТОК";
+                ListBut[1].Enabled = false;
+                ListBox[1].Text = "";
+                ListBox[0].Text = "";
+                ListBox[2].Text = "";
+                ListLabel[3].Text = "";
+                ListLabel[4].Text = "";
+                ListLabel[5].Text = "";
+                ListLabel[5].Enabled = true;
+                ListBox[2].Enabled = false;
+                #endregion
+            }
+        }
+
         public override void ChekInputNumber(int g,string name)
         {
             int chek = magic.Check();
@@ -91,8 +129,8 @@ namespace GuessTheNumber_3
                     else
                     {
                     
-                        MessageBox.Show("          Вітаєм!   \n" +
-                                                                        name + " виграв за " + magic.CountTry.ToString() + " спроб, це число " + g
+                        MessageBox.Show("          Вітаємo!   \n" +
+                                                                        name + " виграв за "  + g
                                                                             , "Вгадай число",
                                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     

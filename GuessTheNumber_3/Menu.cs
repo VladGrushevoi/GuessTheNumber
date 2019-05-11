@@ -77,7 +77,7 @@ namespace GuessTheNumber_3
 
             //Picture Box
             tile.Location = new Point(50, 0);
-            tile.Image = Image.FromFile("E:\\CourseWork 2 sem\\GuessTheNumber_3\\GuessTheNumber_3\\1.bmp");
+            tile.Image = Properties.Resources.main;
             tile.Size = new Size(400, 100);
             tile.SizeMode = PictureBoxSizeMode.AutoSize;
             menu.Controls.Add(tile);

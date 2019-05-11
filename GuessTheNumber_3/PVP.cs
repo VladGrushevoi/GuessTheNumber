@@ -188,7 +188,7 @@ namespace GuessTheNumber_3
                 }
                 else
                 {
-                    MessageBox.Show("          Вітаєм!   \n" + "Виграв "+ name + " гравець, це число " + magic.InputNumber
+                    MessageBox.Show("          Вітаємo!   \n" + "Виграв "+ name + " гравець, це число " + magic.InputNumber
                                                  , "Вгадай число",
                                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
 

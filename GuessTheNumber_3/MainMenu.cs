@@ -59,6 +59,7 @@ namespace GuessTheNumber_3
         public static void MenuOnPvp()
         {
             MainMenu.ActiveForm.Size = new Size(1100, 500);
+            MainMenu.ActiveForm.StartPosition = FormStartPosition.CenterScreen;
             menu.Panel.SendToBack();
             pvp.Panel.BringToFront();
         }

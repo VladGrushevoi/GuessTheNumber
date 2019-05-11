@@ -3,25 +3,25 @@
   <Class Name="GuessTheNumber_3.Magic" Collapsed="true">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAACQAAAAAABBAABAEAEEAAAAAAAIAAAAAADIABA=</HashCode>
+      <HashCode>AAQAAACQAAAAAABBAABAEAEAAAAAAAAIAAAAAADIABA=</HashCode>
       <FileName>Magic.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GuessTheNumber_3.MagicNumber" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="3" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgIAAIoCAAAIAAAACQAAAAgAAAAJAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AgIAAIoCAIAIAAAACQAAAAgAAAAJAAAAAAAAAAAAQAA=</HashCode>
       <FileName>MagicNumber.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GuessTheNumber_3.MainMenu" Collapsed="true">
-    <Position X="9" Y="3.5" Width="1.5" />
+    <Position X="6.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAAACAAQIAIAIKAQAgCAAAAAEAAAEAAAAIQQAI=</HashCode>
       <FileName>MainMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GuessTheNumber_3.Menu">
+  <Class Name="GuessTheNumber_3.Menu" Collapsed="true">
     <Position X="3.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAABAABAAAAAAAAABAAAAAgQAAAADAABAAAAAIGIAAA=</HashCode>
@@ -35,7 +35,7 @@
       <FileName>PVP.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GuessTheNumber_3.Rules">
+  <Class Name="GuessTheNumber_3.Rules" Collapsed="true">
     <Position X="6.25" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAABQggQAAAAAAAAAAAAAAAAAAAAAAABAAAAAAEAAAQ=</HashCode>
@@ -52,7 +52,7 @@
   <Class Name="GuessTheNumber_3.WithComputer" Collapsed="true">
     <Position X="4.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAgAEAAAAABEAAAAQAAAAAABAIAAACBAQAE=</HashCode>
+      <HashCode>AAAAAAAAAAgAEAAAAABEEAAAQAAAAAABAIAAACBAQAE=</HashCode>
       <FileName>WithComputer.cs</FileName>
     </TypeIdentifier>
   </Class>

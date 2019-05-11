@@ -119,11 +119,6 @@ namespace GuessTheNumber_3
             return p;
         }
 
-        private void mPanel_Paint(object sender, EventArgs e)
-        {
-           
-        }
-
         private void textBoxFrom_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && (!Char.IsControl(e.KeyChar)))
@@ -157,13 +152,14 @@ namespace GuessTheNumber_3
         }
 
 
-        private void butPlayRestart_Click(object sender, EventArgs e)
+        public virtual void butPlayRestart_Click(object sender, EventArgs e)
         {
             if (ListBut[1].Text == "ПОЧАТОК")
             {
                 magic.CountTry = 0;
+                magic.TryCulculate();
                 #region//Деякі дії над компонентами після натиску кнопки Початок
-                    ListBut[1].Text = "РЕСТАРТ";
+                ListBut[1].Text = "РЕСТАРТ";
                     ListLabel[3].Visible = true;
                     ListLabel[3].Text = "ЧИСЛО В МЕЖАХ ВІД: " + magic.From.ToString() + " ДО " + magic.To.ToString() + "! ";
                     ListBox[2].Visible = true;
@@ -237,27 +233,51 @@ namespace GuessTheNumber_3
             }
             else
             {
-                magic.CountTry++;
-                ListLabel[4].Text = " ";
-                ListLabel[5].Text = "ЗРОБЛЕНО СПРОБ: " + (magic.CountTry).ToString();
+                ListLabel[5].Text = "ЗАЛИШИЛОСЯ СПРОБ: " + (magic.CountTry).ToString();
+                magic.CountTry--;
                 if (magic.InputNumber < magic.Guess)
                 {
                     ListLabel[4].Text = "ВАШЕ ЧИСЛО МЕНШЕ";
+                    ListLabel[5].Text = "ЗАЛИШИЛОСЯ СПРОБ: " + magic.CountTry.ToString();
+                    if (magic.CountTry == 0)
+                    {
+                        MessageBox.Show("          Ви програли   \n" +
+                                                     "Це було число " + magic.Guess
+                                                     , "Вгадай число",
+                                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ListBut[1].Text = "РЕСТАРТ";
+                        ListBut[1].Enabled = true;
+                        ListBox[2].Enabled = false;
+
+                    }
                 }
                 else if (magic.InputNumber > magic.Guess)
                 {
                     ListLabel[4].Text = "ВАШЕ ЧИСЛО БІЛЬШЕ";
+                    ListLabel[5].Text = "ЗАЛИШИЛОСЯ СПРОБ: " + magic.CountTry.ToString();
+                    if (magic.CountTry == 0)
+                    {
+                        MessageBox.Show("          Ви програли   \n" +
+                                                     "Це було число " + magic.Guess
+                                                     , "Вгадай число",
+                                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ListBut[1].Text = "РЕСТАРТ";
+                        ListBut[1].Enabled = true;
+                        ListBox[2].Enabled = false;
+
+                    }
                 }
-                else
+
+                else if (magic.InputNumber == magic.Guess)
                 {
-                    MessageBox.Show("          Вітаєм!   \n" +
-                                                 "Ви вгадали число за " + magic.CountTry.ToString() + " спроб"
+                    ListLabel[5].Text = "ЗАЛИШИЛОСЯ СПРОБ: " + magic.CountTry.ToString();
+                    MessageBox.Show("          Вітаємo!   \n" +
+                                                 "Ви вгадали число " + magic.Guess
                                                  , "Вгадай число",
                                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ListBut[1].Text = "РЕСТАРТ";
                     ListBut[1].Enabled = true;
                     ListBox[2].Enabled = false;
-                    magic.CountTry = 0;
                 }
             }
 

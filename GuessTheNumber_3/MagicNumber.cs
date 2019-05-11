@@ -7,7 +7,7 @@ namespace GuessTheNumber_3
         private  int gnumber = 0;
         private  int from = 0;
         private  int to = 0;
-        private  int countTry = 0;
+        private  int countTry ;
         private int inputNumber = 0;
 
         Random rand = new Random();
@@ -99,6 +99,16 @@ namespace GuessTheNumber_3
             else
             {
                 return 0;
+            }
+        }
+
+        public void TryCulculate()
+        {
+            int temp = to - from;
+            while (temp > 1)
+            {
+                temp = temp / 2;
+                countTry += 1;
             }
         }
     }
