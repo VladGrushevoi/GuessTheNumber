@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace GuessTheNumber_3
 {
-    public class SinglePlayer : Magic
+    public class SinglePlayer : Magic, IClear
     {
         private Panel SinglePl = new Panel();
 
@@ -38,7 +38,7 @@ namespace GuessTheNumber_3
             }
         }
 
-        public override void Clear()
+        public void Clear()
         {
             ListBox[0].Clear();
             ListBox[1].Clear();

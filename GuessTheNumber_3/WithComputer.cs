@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace GuessTheNumber_3
 {
-    public class WithComputer : Magic
+    public class WithComputer : Magic, IClear
     {
         Panel with = new Panel();
         Label Lcomp = new Label();
@@ -130,7 +130,7 @@ namespace GuessTheNumber_3
                     {
                     
                         MessageBox.Show("          Вітаємo!   \n" +
-                                                                        name + " виграв за "  + g
+                                                                        name + " виграв!!! "
                                                                             , "Вгадай число",
                                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
@@ -192,7 +192,7 @@ namespace GuessTheNumber_3
             }
         }
 
-        public override void Clear()
+        public void Clear()
         {
             ListBox[0].Clear();
             ListBox[1].Clear();

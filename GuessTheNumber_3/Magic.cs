@@ -282,8 +282,5 @@ namespace GuessTheNumber_3
             }
 
         }
-    
-
-        public abstract void Clear();
     }
 }

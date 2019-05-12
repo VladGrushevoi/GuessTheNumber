@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IClear.cs" />
     <Compile Include="Magic.cs" />
     <Compile Include="MagicNumber.cs" />
     <Compile Include="MainMenu.cs">
@@ -91,8 +92,6 @@
   <ItemGroup>
     <None Include="Resource\1.bmp" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

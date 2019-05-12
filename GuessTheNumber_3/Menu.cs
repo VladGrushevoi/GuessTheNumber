@@ -67,7 +67,7 @@ namespace GuessTheNumber_3
             menu.BackColor = Color.DodgerBlue;
             menu.ClientSize = new Size(600, 500);
             menu.Paint += new PaintEventHandler(this.Menu_Paint);
-            menu.BringToFront();
+            //menu.BringToFront();
             menu.Location = new Point(0, 0);
             menu.Margin = new Padding(4);
             menu.Name = "Menu";

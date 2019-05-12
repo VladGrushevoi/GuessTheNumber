@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace GuessTheNumber_3
 {
-    public class PVP : Magic
+    public class PVP : Magic, IClear
     {
         Panel pvp = new Panel();
         TextBox p2 = new TextBox();
@@ -200,7 +200,7 @@ namespace GuessTheNumber_3
             }
         }
 
-        public override void Clear()
+        public void Clear()
         {
             ListBox[0].Clear();
             ListBox[1].Clear();
